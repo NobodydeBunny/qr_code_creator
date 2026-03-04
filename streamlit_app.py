@@ -1,5 +1,6 @@
 import streamlit as st
 import qrcode
+from PIL import Image
 from io import BytesIO
 
 # Page configuration
@@ -70,8 +71,12 @@ with col2:
             qr.add_data(text_input)
             qr.make(fit=True)
             
-            # Generate image
+            # Convert to PIL Image properly
             qr_image = qr.make_image(fill_color="black", back_color="white")
+            
+            # Ensure it's a PIL Image
+            if not isinstance(qr_image, Image.Image):
+                qr_image = qr_image.convert('RGB')
             
             # Display image
             st.image(qr_image, caption="QR Code", use_column_width=False, width=300)
@@ -83,7 +88,7 @@ with col2:
             
             st.download_button(
                 label="⬇️ Download as PNG",
-                data=png_buffer,
+                data=png_buffer.getvalue(),
                 file_name="qr_code.png",
                 mime="image/png",
                 use_container_width=True
@@ -96,7 +101,7 @@ with col2:
             
             st.download_button(
                 label="⬇️ Download as JPEG",
-                data=jpeg_buffer,
+                data=jpeg_buffer.getvalue(),
                 file_name="qr_code.jpg",
                 mime="image/jpeg",
                 use_container_width=True
@@ -110,8 +115,8 @@ with col2:
                 st.write(f"**Border:** {border} boxes")
                 
         except Exception as e:
-            st.error(f"Error: {str(e)}")
-            st.write("Try with simpler text or different settings")
+            st.error(f"❌ Error: {str(e)}")
+            st.write("Please try with different settings or simpler text")
     else:
         st.info("👈 Enter text above to generate QR code")
 
