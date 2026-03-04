@@ -1,5 +1,31 @@
 # QR Code Maker 🎨
 
+[![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/NobodydeBunny/qr_code_creator?style=social)](https://github.com/NobodydeBunny/qr_code_creator)
+[![GitHub Forks](https://img.shields.io/github/forks/NobodydeBunny/qr_code_creator?style=social)](https://github.com/NobodydeBunny/qr_code_creator)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://nobodyDebunny-qr-code-creator.streamlit.app)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)](https://github.com/NobodydeBunny/qr_code_creator)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+---
+
+## 🌐 **Try It Online** (No Installation Needed!)
+
+### **[👉 Open QR Code Maker Web App 👈](https://nobodyDebunny-qr-code-creator.streamlit.app)**
+
+Just visit the link above and start generating beautiful QR codes instantly in your browser!
+
+---
+
+## 📥 **Quick Downloads**
+
+- **[⬇️ Download Windows EXE](https://github.com/NobodydeBunny/qr_code_creator/releases/latest)** - For Windows users (no Python needed)
+- **[📖 View on GitHub](https://github.com/NobodydeBunny/qr_code_creator)** - Source code and documentation
+- **[🐍 Python Package](#installation)** - For developers
+
+---
+
 A simple, elegant, and feature-rich QR code generator with both GUI and CLI support. Generate beautiful QR codes with custom styles, colors, and error correction levels.
 
 ## Features ✨
@@ -12,19 +38,34 @@ A simple, elegant, and feature-rich QR code generator with both GUI and CLI supp
 - **Easy to Save** - Save as PNG or JPEG
 - **GUI & CLI** - Both graphical and command-line interfaces
 - **Cross-Platform** - Works on Windows, macOS, and Linux
+- **Web & Desktop** - Use online or offline
+
+## 📊 **Project Stats**
+
+![GitHub Watchers](https://img.shields.io/github/watchers/NobodydeBunny/qr_code_creator?style=flat)
+![GitHub Issues](https://img.shields.io/github/issues/NobodydeBunny/qr_code_creator?style=flat)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr/NobodydeBunny/qr_code_creator?style=flat)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/NobodydeBunny/qr_code_creator?style=flat)
+![GitHub Repo Size](https://img.shields.io/github/repo-size/NobodydeBunny/qr_code_creator?style=flat)
+![Downloads](https://img.shields.io/github/downloads/NobodydeBunny/qr_code_creator/total?style=flat)
+
+### 🏷️ **Topics**
+`qr-code` `qr-code-generator` `python` `tkinter` `gui` `cli` `streamlit` `web-app` `open-source` `free` `easy-to-use` `cross-platform`
+
+---
 
 ## Installation
 
-### Option 1: Python Script (Recommended for Developers)
+### Option 1: Python Script (Recommended for Developers) 🐍
 
 **Requirements:**
-- Python 3.8 or higher
-- pip (Python package manager)
+- ![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
+- ![pip](https://img.shields.io/badge/pip-latest-yellow.svg)
 
 **Step 1:** Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/qr-code-maker.git
-cd qr-code-maker
+git clone https://github.com/NobodydeBunny/qr_code_creator.git
+cd qr_code_creator
 ```
 
 **Step 2:** Install dependencies
@@ -37,7 +78,9 @@ pip install qrcode[pil] --break-system-packages
 python qr_code_maker.py
 ```
 
-### Option 2: Executable (Windows Only - No Python Required)
+### Option 2: Executable (Windows Only - No Python Required) 🪟
+
+![Windows](https://img.shields.io/badge/Windows-Compatible-brightgreen.svg)
 
 1. Download the latest `.exe` file from [Releases](https://github.com/YOUR_USERNAME/qr-code-maker/releases)
 2. Double-click `QRCodeMaker.exe`
@@ -45,13 +88,33 @@ python qr_code_maker.py
 
 **Download:** [QRCodeMaker.exe (Latest Release)](https://github.com/YOUR_USERNAME/qr-code-maker/releases/latest)
 
-### Option 3: Web App (Coming Soon)
+### Option 3: Web App (Online Version - Instant Access) 🌐
 
-A web version will be available at: `https://qr-code-maker.github.io`
+![Web](https://img.shields.io/badge/Web-Ready-blue.svg)
+![Streamlit](https://img.shields.io/badge/Streamlit-Cloud-FF4B4B.svg)
+
+Visit: **[QR Code Maker Web App](https://your-username-qrcodemakerapp.streamlit.app)**
+
+No installation, no downloads. Just open and use!
+
+### Comparison Table
+
+| Feature | Web App | Desktop GUI | Windows EXE | Python CLI |
+|---------|---------|-------------|------------|-----------|
+| Installation | ❌ None | ✅ pip install | ✅ Download | ✅ pip + git |
+| Internet Required | ✅ Yes | ❌ No | ❌ No | ❌ No |
+| Ease of Use | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
+| Speed | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| Customization | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| Mobile Friendly | ✅ Yes | ❌ Desktop Only | ❌ Desktop Only | ❌ No |
+| Offline | ❌ No | ✅ Yes | ✅ Yes | ✅ Yes |
 
 ## Usage
 
-### GUI Mode (Easiest)
+### GUI Mode (Easiest) 💻
+
+![GUI](https://img.shields.io/badge/Mode-GUI-blue.svg)
+![Interactive](https://img.shields.io/badge/Interactive-Yes-green.svg)
 
 ```bash
 python qr_code_maker.py
@@ -63,7 +126,10 @@ Then:
 3. See the preview instantly
 4. Click "Save QR Code" to save it
 
-### Command Line Mode
+### Command Line Mode 🖥️
+
+![CLI](https://img.shields.io/badge/Mode-CLI-green.svg)
+![Automation](https://img.shields.io/badge/Automation-Friendly-blue.svg)
 
 Generate a QR code from the terminal:
 
@@ -80,6 +146,13 @@ python qr_code_maker.py --text "Secret" --fill-color blue --back-color lightblue
 # With error correction
 python qr_code_maker.py --text "Data" --error-correction H --output secure.png
 ```
+
+### Web Version 🌐
+
+![Streamlit](https://img.shields.io/badge/Streamlit-Cloud-FF4B4B.svg)
+![No Setup](https://img.shields.io/badge/Setup-None-green.svg)
+
+Visit: **[https://your-username-qrcodemakerapp.streamlit.app](https://your-username-qrcodemakerapp.streamlit.app)**
 
 ### Command Line Options
 
@@ -224,6 +297,52 @@ Use `--onefile` with UPX compression:
 pyinstaller --onefile --upx-dir=path/to/upx qr_code_maker.py
 ```
 
+## 🌟 Support & Engagement
+
+**Like this project?** Please consider:
+- ⭐ **Star the repository** - Help us reach more people
+- 🔄 **Share it** - Tell your friends and colleagues
+- 🐛 **Report issues** - Help us improve
+- 💡 **Suggest features** - Send us your ideas
+- 🔗 **Add to your project** - Use it in your own work
+
+---
+
+## 🔗 **Share & Connect**
+
+Share this project on:
+- [Twitter](https://twitter.com/intent/tweet?text=Check%20out%20QR%20Code%20Maker%20-%20A%20beautiful%20QR%20code%20generator!%20https://github.com/NobodydeBunny/qr_code_creator)
+- [LinkedIn](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/NobodydeBunny/qr_code_creator)
+- [Reddit](https://www.reddit.com/submit?url=https://github.com/NobodydeBunny/qr_code_creator&title=QR%20Code%20Maker)
+- [Product Hunt](https://www.producthunt.com/)
+- [Dev.to](https://dev.to/)
+
+---
+
+## 📈 **GitHub Topics**
+
+Add these to your GitHub repository settings for better discoverability:
+
+`qr-code` `qr-code-generator` `python` `tkinter` `gui` `cli` `streamlit` `web-app` `open-source` `free` `cross-platform` `windows` `macos` `linux`
+
+---
+
+## 🎯 **SEO Keywords**
+
+This project is optimized for:
+- QR code generator
+- QR code maker
+- Python QR code
+- Free QR code tool
+- Online QR code generator
+- QR code desktop app
+- Streamlit QR code
+- Python GUI application
+- Windows QR code
+- Cross-platform tool
+
+---
+
 ## Contributing
 
 Contributions are welcome! To contribute:
@@ -252,13 +371,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- 📧 **Issues** - [Report bugs here](https://github.com/YOUR_USERNAME/qr-code-maker/issues)
-- 💬 **Discussions** - [Ask questions here](https://github.com/YOUR_USERNAME/qr-code-maker/discussions)
+- 📧 **Issues** - [Report bugs here](https://github.com/NobodydeBunny/qr_code_creator/issues)
+- 💬 **Discussions** - [Ask questions here](https://github.com/NobodydeBunny/qr_code_creator/discussions)
 - ⭐ **Star** - If you like this project, please star it!
 
 ## Author
 
-Created with ❤️ by [Your Name](https://github.com/YOUR_USERNAME)
+Created with ❤️ by [NobodydeBunny](https://github.com/NobodydeBunny)
 
 ## Acknowledgments
 
