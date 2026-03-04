@@ -23,6 +23,22 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
+# Color mapping for PIL
+COLOR_MAP = {
+    "black": "black",
+    "red": "red",
+    "blue": "blue",
+    "green": "green",
+    "purple": "purple",
+    "orange": "orange",
+    "darkblue": "darkblue",
+    "white": "white",
+    "gray": "gray",
+    "lightblue": "lightblue",
+    "lightyellow": "lightyellow",
+    "lightgray": "lightgray",
+}
+
 # Title
 st.title("🎨 QR Code Maker")
 st.markdown("Generate beautiful QR codes instantly - No installation needed!")
@@ -124,6 +140,10 @@ with col2:
                 'H': qrcode.constants.ERROR_CORRECT_H,
             }
             
+            # Get actual color values from mapping
+            fill_color_value = COLOR_MAP.get(fill_color, "black")
+            back_color_value = COLOR_MAP.get(back_color, "white")
+            
             # Generate QR code
             qr = qrcode.QRCode(
                 version=1,
@@ -134,13 +154,13 @@ with col2:
             qr.add_data(text_input)
             qr.make(fit=True)
             
-            # Create image
-            img = qr.make_image(fill_color=fill_color, back_color=back_color)
+            # Create image with proper color format
+            img = qr.make_image(fill_color=fill_color_value, back_color=back_color_value)
             
             # Display
             st.image(img, use_column_width=True, caption="Your QR Code")
             
-            # Download button
+            # Download button for PNG
             buf = BytesIO()
             img.save(buf, format="PNG")
             buf.seek(0)
@@ -175,7 +195,7 @@ with col2:
                 st.write(f"**Size:** Box={box_size}px, Border={border}boxes")
                 
         except Exception as e:
-            st.error(f"❌ Error generating QR code: {e}")
+            st.error(f"❌ Error generating QR code: {str(e)}")
     else:
         st.info("👈 Enter text or URL to generate QR code")
 
@@ -186,8 +206,8 @@ st.markdown("""
 <div style="text-align: center">
     <p style="color: gray;">
         Made with ❤️ using Python & Streamlit | 
-        <a href="https://github.com/YOUR_USERNAME/qr-code-maker">GitHub</a> | 
-        <a href="https://github.com/YOUR_USERNAME/qr-code-maker/issues">Report Issue</a>
+        <a href="https://github.com/NobodydeBunny/qr_code_creator">GitHub</a> | 
+        <a href="https://github.com/NobodydeBunny/qr_code_creator/issues">Report Issue</a>
     </p>
 </div>
 """, unsafe_allow_html=True)
