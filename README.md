@@ -12,7 +12,7 @@
 
 ## 🌐 **Try It Online** (No Installation Needed!)
 
-### **[👉 Open QR Code Maker Web App 👈](https://nobodyDebunny-qr-code-creator.streamlit.app)**
+### **[👉 Open QR Code Maker Web App 👈](https://qrcodecreator-ksgj9gbm7mbbmmrc7fzede.streamlit.app/#preview)**
 
 Just visit the link above and start generating beautiful QR codes instantly in your browser!
 
