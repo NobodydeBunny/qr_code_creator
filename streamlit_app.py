@@ -1,5 +1,4 @@
 import streamlit as st
-from PIL import Image
 import qrcode
 from io import BytesIO
 
@@ -7,207 +6,117 @@ from io import BytesIO
 st.set_page_config(
     page_title="QR Code Maker",
     page_icon="🎨",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    layout="wide"
 )
 
-# Custom CSS
-st.markdown("""
-    <style>
-    .main {
-        padding: 0rem 0rem;
-    }
-    .stTabs [data-baseweb="tab-list"] button {
-        font-size: 18px;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-# Color mapping for PIL
-COLOR_MAP = {
-    "black": "black",
-    "red": "red",
-    "blue": "blue",
-    "green": "green",
-    "purple": "purple",
-    "orange": "orange",
-    "darkblue": "darkblue",
-    "white": "white",
-    "gray": "gray",
-    "lightblue": "lightblue",
-    "lightyellow": "lightyellow",
-    "lightgray": "lightgray",
-}
-
-# Title
 st.title("🎨 QR Code Maker")
-st.markdown("Generate beautiful QR codes instantly - No installation needed!")
+st.markdown("Generate beautiful QR codes instantly!")
 
-# Create columns
-col1, col2 = st.columns([1, 1.2], gap="large")
+# Create two columns
+col1, col2 = st.columns([1, 1.2])
 
 with col1:
-    st.subheader("⚙️ Settings")
+    st.subheader("Settings")
     
-    # Input text
+    # Text input
     text_input = st.text_area(
         "Enter text or URL:",
-        value="https://github.com",
-        height=80,
-        help="Enter the text or URL you want to encode"
+        value="https://github.com/NobodydeBunny/qr_code_creator",
+        height=100
     )
     
     st.divider()
     
     # Error Correction
     st.write("**Error Correction Level**")
-    col_ec1, col_ec2, col_ec3, col_ec4 = st.columns(4)
-    with col_ec1:
-        ec_l = st.button("L (7%)", use_container_width=True, key="ec_l")
-    with col_ec2:
-        ec_m = st.button("M (15%)", use_container_width=True, key="ec_m")
-    with col_ec3:
-        ec_q = st.button("Q (25%)", use_container_width=True, key="ec_q")
-    with col_ec4:
-        ec_h = st.button("H (30%)", use_container_width=True, key="ec_h")
-    
-    if 'error_correction' not in st.session_state:
-        st.session_state.error_correction = 'L'
-    
-    if ec_l:
-        st.session_state.error_correction = 'L'
-    elif ec_m:
-        st.session_state.error_correction = 'M'
-    elif ec_q:
-        st.session_state.error_correction = 'Q'
-    elif ec_h:
-        st.session_state.error_correction = 'H'
-    
-    error_correction = st.session_state.error_correction
-    st.caption(f"Selected: **{error_correction}**")
-    
-    st.divider()
-    
-    # Style
-    st.write("**QR Code Style**")
-    style = st.radio(
-        "Choose style:",
-        ["default", "rounded", "circle"],
+    error_correction = st.radio(
+        "Select level:",
+        ["L - 7%", "M - 15%", "Q - 25%", "H - 30%"],
         horizontal=True,
         label_visibility="collapsed"
     )
+    
+    ec_map = {
+        "L - 7%": qrcode.constants.ERROR_CORRECT_L,
+        "M - 15%": qrcode.constants.ERROR_CORRECT_M,
+        "Q - 25%": qrcode.constants.ERROR_CORRECT_Q,
+        "H - 30%": qrcode.constants.ERROR_CORRECT_H,
+    }
     
     st.divider()
     
     # Size settings
     st.write("**Size Settings**")
-    col_size1, col_size2 = st.columns(2)
-    with col_size1:
-        box_size = st.slider("Box Size (px):", 1, 20, 10)
-    with col_size2:
-        border = st.slider("Border (boxes):", 0, 10, 4)
+    box_size = st.slider("Box Size (pixels):", 1, 20, 10)
+    border = st.slider("Border (boxes):", 0, 10, 4)
     
     st.divider()
     
-    # Colors
-    st.write("**Colors**")
-    col_color1, col_color2 = st.columns(2)
-    
-    with col_color1:
-        fill_color = st.selectbox(
-            "Fill Color:",
-            ["black", "red", "blue", "green", "purple", "orange", "darkblue"],
-            label_visibility="collapsed"
-        )
-    
-    with col_color2:
-        back_color = st.selectbox(
-            "Background Color:",
-            ["white", "black", "gray", "lightblue", "lightyellow", "lightgray"],
-            label_visibility="collapsed"
-        )
+    st.info("💡 Tip: Larger box size = bigger QR code, larger file size")
 
 with col2:
-    st.subheader("👁️ Preview")
+    st.subheader("Preview")
     
-    if text_input:
+    if text_input.strip():
         try:
-            # Map error correction
-            ec_map = {
-                'L': qrcode.constants.ERROR_CORRECT_L,
-                'M': qrcode.constants.ERROR_CORRECT_M,
-                'Q': qrcode.constants.ERROR_CORRECT_Q,
-                'H': qrcode.constants.ERROR_CORRECT_H,
-            }
-            
-            # Get actual color values from mapping
-            fill_color_value = COLOR_MAP.get(fill_color, "black")
-            back_color_value = COLOR_MAP.get(back_color, "white")
-            
-            # Generate QR code
+            # Create QR code
             qr = qrcode.QRCode(
                 version=1,
                 error_correction=ec_map[error_correction],
                 box_size=box_size,
                 border=border,
             )
+            
             qr.add_data(text_input)
             qr.make(fit=True)
             
-            # Create image with proper color format
-            img = qr.make_image(fill_color=fill_color_value, back_color=back_color_value)
+            # Generate image
+            qr_image = qr.make_image(fill_color="black", back_color="white")
             
-            # Display
-            st.image(img, use_column_width=True, caption="Your QR Code")
+            # Display image
+            st.image(qr_image, caption="QR Code", use_column_width=False, width=300)
             
-            # Download button for PNG
-            buf = BytesIO()
-            img.save(buf, format="PNG")
-            buf.seek(0)
+            # Download PNG
+            png_buffer = BytesIO()
+            qr_image.save(png_buffer, format="PNG")
+            png_buffer.seek(0)
             
             st.download_button(
                 label="⬇️ Download as PNG",
-                data=buf,
+                data=png_buffer,
                 file_name="qr_code.png",
                 mime="image/png",
                 use_container_width=True
             )
             
-            # Download as JPEG
-            buf_jpg = BytesIO()
-            img.save(buf_jpg, format="JPEG")
-            buf_jpg.seek(0)
+            # Download JPEG
+            jpeg_buffer = BytesIO()
+            qr_image.save(jpeg_buffer, format="JPEG")
+            jpeg_buffer.seek(0)
             
             st.download_button(
                 label="⬇️ Download as JPEG",
-                data=buf_jpg,
+                data=jpeg_buffer,
                 file_name="qr_code.jpg",
                 mime="image/jpeg",
                 use_container_width=True
             )
             
-            # Display info
-            with st.expander("📊 QR Code Info"):
-                st.write(f"**Content:** {text_input}")
-                st.write(f"**Style:** {style}")
+            # Show details
+            with st.expander("📊 QR Code Details"):
+                st.write(f"**Data:** {text_input}")
                 st.write(f"**Error Correction:** {error_correction}")
-                st.write(f"**Colors:** Fill={fill_color}, Background={back_color}")
-                st.write(f"**Size:** Box={box_size}px, Border={border}boxes")
+                st.write(f"**Box Size:** {box_size}px")
+                st.write(f"**Border:** {border} boxes")
                 
         except Exception as e:
-            st.error(f"❌ Error generating QR code: {str(e)}")
+            st.error(f"Error: {str(e)}")
+            st.write("Try with simpler text or different settings")
     else:
-        st.info("👈 Enter text or URL to generate QR code")
+        st.info("👈 Enter text above to generate QR code")
 
-# Footer
 st.divider()
 st.markdown("""
 ---
-<div style="text-align: center">
-    <p style="color: gray;">
-        Made with ❤️ using Python & Streamlit | 
-        <a href="https://github.com/NobodydeBunny/qr_code_creator">GitHub</a> | 
-        <a href="https://github.com/NobodydeBunny/qr_code_creator/issues">Report Issue</a>
-    </p>
-</div>
-""", unsafe_allow_html=True)
+**QR Code Maker** | [GitHub](https://github.com/NobodydeBunny/qr_code_creator) | [Report Issue](https://github.com/NobodydeBunny/qr_code_creator/issues)
+""")
